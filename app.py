@@ -663,6 +663,7 @@ def get_weather():
     try:
         location = request.args.get('location')
         
+        
         if not location:
             return jsonify({'error': 'Location parameter is required'}), 400
         
