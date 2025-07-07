@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource-Efficient Plant Care Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .plant-bg {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="bg"><stop offset="0%" style="stop-color:%234ade80;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%2316a34a;stop-opacity:0.05"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23bg)"/></svg>');
+        }
+        /* Custom styles for the dashboard */
+        .card {
+            @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 m-4;
+        }
+        .card-header {
+            @apply text-xl font-semibold text-gray-800 dark:text-white;
+        }
+        .card-content {
+            @apply text-gray-700 dark:text-gray-300;
+        }
+        /* Chart.js styles */
+        .chart-container {
+            @apply max-w-4xl mx-auto my-8;
+        }
+        /* Responsive styles */
+        @media (max-width: 640px) {
+            .card {
+                @apply m-2;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300 plant-bg min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Plant Care Dashboard</h1>
+            <p class="text-gray-600 dark:text-gray-400">Monitor and manage your plants' health and resources efficiently.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-header">Watering Schedule</div>
+                <div class="card-content">
+                    <p>Next watering: <span class="font-semibold">2 days</span></p>
+                    <p>Last watered: <span class="font-semibold">3 days ago</span></p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-header">Fertilizer Schedule</div>
+                <div class="card-content">
+                    <p>Next fertilization: <span class="font-semibold">7 days</span></p>
+                    <p>Last fertilized: <span class="font-semibold">10 days ago</span></p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-header">Pest Control</div>
+                <div class="card-content">
+                    <p>Last checked: <span class="font-semibold">1 day ago</span></p>
+                    <p>Status: <span class="font-semibold text-green-500">No pests detected</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="plantCareChart"></canvas>
+        </div>
+    </div>
+    <script>
+        // Chart.js configuration
+        const ctx = document.getElementById('plantCareChart').getContext('2d');
+        const plantCareChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Water Usage',
+                    data: [10, 20, 15, 25, 30, 22, 18],
+                    backgroundColor: 'rgba(74, 222, 128, 0.2)',
+                    borderColor: 'rgba(74, 222, 128, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Months'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Water Usage (liters)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
