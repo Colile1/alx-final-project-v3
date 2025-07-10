@@ -1,3 +1,3 @@
-/.venv
-/git.ignore
-/venv
+.venv/
+git.ignore
+venv/

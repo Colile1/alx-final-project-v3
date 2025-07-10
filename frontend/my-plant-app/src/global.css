@@ -1,0 +1,41 @@
+/* global.css: Light/Dark theme variables and base styles */
+
+:root {
+  --color-bg: #f9fafb;
+  --color-text: #222;
+  --color-nav: #f3f4f6;
+  --color-nav-text: #222;
+}
+
+[data-theme='dark'] {
+  --color-bg: #18181b;
+  --color-text: #f3f4f6;
+  --color-nav: #23272f;
+  --color-nav-text: #f3f4f6;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background 0.3s, color 0.3s;
+}
+
+nav {
+  background: var(--color-nav);
+  color: var(--color-nav-text);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Utility classes for dark mode */
+.dark\:bg-gray-900[data-theme='dark'],
+[data-theme='dark'] .dark\:bg-gray-900 {
+  background-color: #18181b !important;
+}
+.dark\:text-gray-300[data-theme='dark'],
+[data-theme='dark'] .dark\:text-gray-300 {
+  color: #d1d5db !important;
+}
+.dark\:bg-gray-700[data-theme='dark'],
+[data-theme='dark'] .dark\:bg-gray-700 {
+  background-color: #374151 !important;
+}
